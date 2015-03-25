@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<script type="text/javascript" src="libs/jquery-1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/flighttime.js"></script>
+		<link type="text/css" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
+		<link type="text/css" href="css/base.css" rel="stylesheet" />
+		<script type="text/javascript">
+			// Import referenced hash from iframe URL
+			$(function () {
+				if (location.hash) {
+					$('head').append (
+						$('<link>')
+							.attr ('rel', 'stylesheet')
+							.attr ('type', 'text/css')
+							.attr ('href', location.hash.slice (1))
+					);
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="inputs">
+				<div class="input">
+					<div class="label">
+						<span>Number of motors:</span>
+						<strong id="motors_value"></strong>
+					</div>
+					<div id="motors_slider"></div>
+				</div>
+				<div class="input">
+					<div class="label">
+						<span>Maximum draw per motor:</span>
+						<strong id="motor_amps_value"></strong>
+					</div>
+					<div id="motor_amps_slider"></div>
+				</div>
+				<div class="input">
+					<div class="label">
+						<span>Maximum draw by other equipment (lights, BEC, receiver, etc):</span>
+						<strong id="misc_amps_value"></strong>
+					</div>
+					<div id="misc_amps_slider"></div>
+				</div>
+				<div class="input">
+					<div class="label">
+						<span>LiPo cell arrangement:</span>
+						<strong id="lipo_series_value"></strong>
+					</div>
+					<div id="lipo_series_slider"></div>
+				</div>
+				<div class="input">
+					<div class="label">
+						<span>LiPo capacity:</span>
+						<strong id="lipo_mah_value"></strong>
+					</div>
+					<div id="lipo_mah_slider"></div>
+				</div>
+				<div class="input">
+					<div class="label">
+						<span>Flying Load / Average Throttle:</span>
+						<strong id="fly_load_value"></strong>
+					</div>
+					<div id="fly_load_slider"></div>
+				</div>
+			</div>
+			<table id="outputs">
+				<thead>
+					<tr class="ui-widget-header" id="tablehead">
+						<th colspan="2">Calculated Values</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Draw, maximum</th>
+						<td id="max_draw"></td>
+					</tr>
+					<tr>
+						<th>Draw, flying load</th>
+						<td id="draw_by_load"></td>
+					</tr>
+					<tr>
+						<th>Flying time, maximum</th>
+						<td id="flying_time"></td>
+					</tr>
+					<tr>
+						<th>Flying time, 80% rule</th>
+						<td id="flying_time_80"></td>
+					</tr>
+					<tr>
+						<th>LiPo discharge rating, minimum</th>
+						<td id="lipo_discharge_rating"></td>
+					</tr>
+					<tr>
+						<th>LiPo charge current, 1C</th>
+						<td id="charge_rate"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

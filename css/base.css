@@ -1,0 +1,61 @@
+/* Slider value */
+.input .label strong {
+	color: #ff7030;
+	font-weight: bold;
+}
+/* Slider area, table header */
+.ui-widget-header {
+	background: none;
+	background-color: #ff7030;
+}
+/* Slider rail */
+.ui-widget-content, .ui-widget-content > span {
+	border: 1px solid #d0d0d0;
+	background: transparent;
+	background-color: #e8e8e8;
+}
+/* Slider handle */
+.ui-state-default, .ui-widget-content .ui-state-default {
+	border: 1px solid #cccccc;
+	background: none;
+	background-color: #f6f6f6;
+}
+/* Slider handle, hover */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus {
+	border: 1px solid #fbcb09;
+	background: none;
+	background-color: #fdf5ce;
+	color: #c77405;
+}
+
+body, html {
+	margin: 4px 6px 0 5px;
+	padding: 0;
+	background: transparent;
+	font-family: sans-serif;
+	font-size: 10pt;
+}
+#inputs {
+	margin: 0 0 20px 0;
+}
+.input {
+	margin: 0 0 9px 0;
+}
+.input .label {
+	margin: 0 0 5px 0;
+}
+table {
+	font-size: 10pt;
+	width: 100%;
+}
+table thead th {
+	margin: 0;
+	padding: 3px 3px 1px 3px;
+	text-align: left;
+}
+table tbody th {
+	text-align: left;
+}
+table tbody td {
+	text-align: right;
+}
