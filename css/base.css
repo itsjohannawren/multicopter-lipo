@@ -56,7 +56,12 @@ body, html {
 	margin: 0 0 20px 0;
 }
 #notice {
-	text-align: right;
+	text-align: left;
+}
+#notice img {
+	margin: -6px 0 0 0;
+	display: inline;
+	float: right;
 }
 .input {
 	margin: 0 0 9px 0;
