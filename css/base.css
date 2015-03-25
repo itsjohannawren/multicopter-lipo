@@ -27,6 +27,14 @@
 	background-color: #fdf5ce;
 	color: #c77405;
 }
+/* Notice link */
+a, a:visited {
+	color: #ff7030;
+	text-decoration: none;
+}
+a:hover, a:focus, a:active {
+	text-decoration: underline;
+}
 
 body, html {
 	margin: 0 6px 0 5px;
@@ -35,8 +43,11 @@ body, html {
 	font-family: sans-serif;
 	font-size: 10pt;
 }
-#inputs {
+#inputs, #outputs {
 	margin: 0 0 20px 0;
+}
+#notice {
+	text-align: right;
 }
 .input {
 	margin: 0 0 9px 0;
