@@ -35,6 +35,15 @@ a, a:visited {
 a:hover, a:focus, a:active {
 	text-decoration: underline;
 }
+/* Output table */
+table tbody tr th, table tbody tr td {
+	border-color: #ff7030;
+	border-style: solid;
+}
+table tbody tr th, table tbody tr td {
+	border-color: #ff7030;
+	border-style: solid;
+}
 
 body, html {
 	margin: 0 6px 0 5px;
@@ -61,12 +70,28 @@ table {
 }
 table thead th {
 	margin: 0;
-	padding: 3px 3px 1px 3px;
+	padding: 5px 5px 3px 5px;
 	text-align: left;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
-table tbody th {
+table tbody tr th {
+	border-width: 0 0 0 1px;
 	text-align: left;
+	padding: 4px 0 2px 4px;
 }
-table tbody td {
+table tbody tr td {
+	border-width: 0 1px 0 0;
 	text-align: right;
+	padding: 4px 4px 2px 0;
+}
+table tbody tr:last-of-type th {
+	border-width: 0 0 1px 1px;
+}
+table tbody tr:last-of-type td {
+	border-width: 0 1px 1px 0;
 }
