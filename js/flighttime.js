@@ -1,22 +1,22 @@
 // Setup sliders
-$(function () {
+function uiLoad (params) {
 	$('#motors_slider').slider ({
 		range: 'min',
-		value: 4,
-		min: 1,
-		max: 12,
+		value: paramDefault (params, 'motorsInit', /^\d+$/, 4),
+		min: paramDefault (params, 'motorsMin', /^\d+$/, 1),
+		max: paramDefault (params, 'motorsMax', /^\d+$/, 12),
 		slide: function (event, ui) {
 			$('#motors_value').text (ui.value);
 			lipoLifeCalculate ();
 		}
 	});
 	$('#motors_value').text ($('#motors_slider').slider ('value'));
-	
+
 	$('#motor_amps_slider').slider ({
 		range: 'min',
-		value: 10,
-		min: 1,
-		max: 100,
+		value: paramDefault (params, 'motorAmpsInit', /^\d+$/, 10),
+		min: paramDefault (params, 'motorAmpsMin', /^\d+$/, 1),
+		max: paramDefault (params, 'motorAmpsMax', /^\d+$/, 100),
 		slide: function (event, ui) {
 			$('#motor_amps_value').text (ui.value + 'A');
 			lipoLifeCalculate ();
@@ -26,9 +26,9 @@ $(function () {
 
 	$('#misc_amps_slider').slider ({
 		range: 'min',
-		value: 1,
-		min: 0,
-		max: 50,
+		value: paramDefault (params, 'miscAmpsInit', /^\d+$/, 1),
+		min: paramDefault (params, 'miscAmpsMin', /^\d+$/, 0),
+		max: paramDefault (params, 'miscAmpsMax', /^\d+$/, 50),
 		slide: function (event, ui) {
 			$('#misc_amps_value').text (ui.value + 'A');
 			lipoLifeCalculate ();
@@ -38,9 +38,9 @@ $(function () {
 
 	$('#lipo_series_slider').slider ({
 		range: 'min',
-		value:3,
-		min: 1,
-		max: 10,
+		value: paramDefault (params, 'lipoSeriesInit', /^\d+$/, 3),
+		min: paramDefault (params, 'lipoSeriesMin', /^\d+$/, 1),
+		max: paramDefault (params, 'lipoSeriesMax', /^\d+$/, 10),
 		slide: function (event, ui) {
 			$('#lipo_series_value').text (ui.value + 'S');
 			lipoLifeCalculate ();
@@ -50,10 +50,10 @@ $(function () {
 
 	$('#lipo_mah_slider').slider ({
 		range: 'min',
-		value: 1500,
-		min: 100,
-		max: 10000,
-		step: 50,
+		value: paramDefault (params, 'lipoMAHInit', /^\d+$/, 1500),
+		min: paramDefault (params, 'lipoMAHMin', /^\d+$/, 100),
+		max: paramDefault (params, 'lipoMAHMax', /^\d+$/, 10000),
+		step: paramDefault (params, 'lipoMAHStep', /^\d+$/, 50),
 		slide: function (event, ui) {
 			$('#lipo_mah_value').text (ui.value + 'mAh');
 			lipoLifeCalculate ();
@@ -63,9 +63,9 @@ $(function () {
 
 	$('#fly_load_slider').slider ({
 		range: 'min',
+		value: paramDefault (params, 'flyLoadInit', /^\d+$/, 40),
 		min: 0,
 		max: 100,
-		value: 40,
 		slide: function (event, ui) {
 			$('#fly_load_value').text (ui.value + '% (' + fuzzyFlyLoad (ui.value) + ' flying)');
 			lipoLifeCalculate ();
@@ -75,7 +75,15 @@ $(function () {
 
 	// Load the initial numbers
 	lipoLifeCalculate ();
-});
+}
+
+function paramDefault (params, param, match, fallback) {
+	param = param.toLowerCase ();
+	if (params [param] && match.exec (params [param])) {
+		return (params [param]);
+	}
+	return (fallback);
+}
 
 function fuzzyFlyLoad (load) {
 	if (load <= 45) {

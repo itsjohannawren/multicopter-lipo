@@ -2,22 +2,10 @@
 	<head>
 		<script type="text/javascript" src="libs/jquery-1.11.2/jquery.min.js"></script>
 		<script type="text/javascript" src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/base.js"></script>
 		<script type="text/javascript" src="js/flighttime.js"></script>
 		<link type="text/css" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
 		<link type="text/css" href="css/base.css" rel="stylesheet" />
-		<script type="text/javascript">
-			// Import referenced hash from iframe URL
-			$(function () {
-				if (location.hash) {
-					$('head').append (
-						$('<link>')
-							.attr ('rel', 'stylesheet')
-							.attr ('type', 'text/css')
-							.attr ('href', location.hash.slice (1))
-					);
-				}
-			});
-		</script>
 	</head>
 	<body>
 		<div id="wrapper">
