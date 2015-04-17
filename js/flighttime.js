@@ -179,7 +179,7 @@ function flightTimeCalculate () {
 
 function updateShareURL () {
 	var url =
-		'http://tools.jwalter.sh/multicopter/lipo.test/flighttime.html?save=' +
+		'http://tools.jwalter.sh/multicopter/lipo/flighttime.html?save=' +
 		parseInt ($('#motors_value').text (), 10) + ',' +
 		paramDefault (urlParams, 'motorsMin', /^\d+$/, 1) + ',' +
 		paramDefault (urlParams, 'motorsMax', /^\d+$/, 12) + ',' +
@@ -199,5 +199,6 @@ function updateShareURL () {
 		paramDefault (urlParams, 'lipoMAHStep', /^\d+$/, 50) + ',' +
 		parseInt ($('#fly_load_value').text (), 10);
 
-	$('#share').attr ('data-href', url);
+	$('#webshare').attr ('href', url);
+	$('#fbshare').attr ('data-href', url);
 }
