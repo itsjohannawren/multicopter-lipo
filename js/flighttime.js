@@ -1,6 +1,6 @@
 // Setup sliders
 function uiLoad (params) {
-	if (urlParams.save && urlParams.save.match (/^((\d+(\.\d+)?)?,){16}(\d+(\.\d+)?)?$/)) {
+	if (urlParams.save && urlParams.save.match (/^((\d+(\.\d+)?)?,){17}(\d+(\.\d+)?)?$/)) {
 		params = urlParams.save.split (',');
 
 		urlParams = {
