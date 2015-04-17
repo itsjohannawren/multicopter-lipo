@@ -45,8 +45,15 @@ table tbody tr th, table tbody tr td {
 	border-style: solid;
 }
 
-body, html {
-	margin: 0 6px 0 5px;
+body {
+	margin: 10px 20px 10px 18px;
+	padding: 0;
+	background: transparent;
+	font-family: sans-serif;
+	font-size: 10pt;
+}
+body.iframe {
+	margin: 0 10px 0 8px;
 	padding: 0;
 	background: transparent;
 	font-family: sans-serif;

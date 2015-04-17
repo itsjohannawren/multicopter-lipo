@@ -1,5 +1,14 @@
 var urlParams = {};
 
+function inIFrame () {
+	try {
+		return (window.self !== window.top);
+	} catch (err) {
+		// Nothing
+	}
+	return (true);
+}
+
 $(function () {
 	var
 		querystring = window.location.search.replace (/^\?/, ''),
@@ -16,6 +25,10 @@ $(function () {
 			}
 		}
 	});
+
+	if (inIFrame ()) {
+		$('body').addClass ('iframe');
+	}
 
 	if (urlParams.css) {
 		$('head').append (
