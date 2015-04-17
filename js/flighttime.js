@@ -1,6 +1,6 @@
 // Setup sliders
 function uiLoad (params) {
-	if (urlParams.save && urlParams.save.match (/^(\d*,){16}\d*$/)) {
+	if (urlParams.save && urlParams.save.match (/^((\d+(\.\d+)?)?,){16}(\d+(\.\d+)?)?$/)) {
 		params = urlParams.save.split (',');
 
 		urlParams = {
@@ -13,33 +13,16 @@ function uiLoad (params) {
 			'miscampsinit': params [6],
 			'miscampsmin': params [7],
 			'miscampsmax': params [8],
-			'liposeriesinit': params [9],
-			'liposeriesmin': params [10],
-			'liposeriesmax': params [11],
-			'lipomahinit': params [12],
-			'lipomahmin': params [13],
-			'lipomahmax': params [14],
-			'lipomahstep': params [15],
-			'flyloadinit': params [16]
+			'miscampsstep': params [9],
+			'liposeriesinit': params [10],
+			'liposeriesmin': params [11],
+			'liposeriesmax': params [12],
+			'lipomahinit': params [13],
+			'lipomahmin': params [14],
+			'lipomahmax': params [15],
+			'lipomahstep': params [16],
+			'flyloadinit': params [17]
 		};
-
-		//urlParams.motorsinit = parseInt (paramDefault (urlParams, 'motorsInit', /^\d+$/, 4), 10);
-		//urlParams.motorsmin = parseInt (paramDefault (urlParams, 'motorsMin', /^\d+$/, 1), 10);
-		//urlParams.motorsmax = parseInt (paramDefault (urlParams, 'motorsMax', /^\d+$/, 12), 10);
-		//urlParams.motorampsinit = parseInt (paramDefault (urlParams, 'motorAmpsInit', /^\d+$/, 10), 10);
-		//urlParams.motorampsmin = parseInt (paramDefault (urlParams, 'motorAmpsMin', /^\d+$/, 1), 10);
-		//urlParams.motorampsmax = parseInt (paramDefault (urlParams, 'motorAmpsMax', /^\d+$/, 100), 10);
-		//urlParams.miscampsinit = parseInt (paramDefault (urlParams, 'miscAmpsInit', /^\d+$/, 1), 10);
-		//urlParams.miscampsmin = parseInt (paramDefault (urlParams, 'miscAmpsMin', /^\d+$/, 0), 10);
-		//urlParams.miscampsmax = parseInt (paramDefault (urlParams, 'miscAmpsMax', /^\d+$/, 50), 10);
-		//urlParams.liposeriesinit = parseInt (paramDefault (urlParams, 'lipoSeriesInit', /^\d+$/, 3), 10);
-		//urlParams.liposeriesmin = parseInt (paramDefault (urlParams, 'lipoSeriesMin', /^\d+$/, 1), 10);
-		//urlParams.liposeriesmax = parseInt (paramDefault (urlParams, 'lipoSeriesMax', /^\d+$/, 10), 10);
-		//urlParams.lipomahinit = parseInt (paramDefault (urlParams, 'lipoMAHInit', /^\d+$/, 1500), 10);
-		//urlParams.lipomahmin = parseInt (paramDefault (urlParams, 'lipoMAHMin', /^\d+$/, 100), 10);
-		//urlParams.lipomahmax = parseInt (paramDefault (urlParams, 'lipoMAHMax', /^\d+$/, 10000), 10);
-		//urlParams.lipomahstep = parseInt (paramDefault (urlParams, 'lipoMAHStep', /^\d+$/, 50), 10);
-		//urlParams.flyloadinit = parseInt (paramDefault (urlParams, 'flyLoadInit', /^\d+$/, 40), 10);
 	}
 
 	$('#motors_slider').slider ({
@@ -70,7 +53,8 @@ function uiLoad (params) {
 		'range': 'min',
 		'value': parseInt (paramDefault (urlParams, 'miscAmpsInit', /^\d+$/, 1), 10),
 		'min': parseInt (paramDefault (urlParams, 'miscAmpsMin', /^\d+$/, 0), 10),
-		'max': parseInt (paramDefault (urlParams, 'miscAmpsMax', /^\d+$/, 50), 10),
+		'max': parseInt (paramDefault (urlParams, 'miscAmpsMax', /^\d+$/, 5), 10),
+		'step': parseFloat (paramDefault (urlParams, 'miscAmpsStep', /^\d+(\.\d+)?$/, 0.1)),
 		'slide': function (event, ui) {
 			$('#misc_amps_value').text (ui.value + 'A');
 			flightTimeCalculate ();
@@ -168,7 +152,7 @@ function flightTimeCalculate () {
 		value_lipo_volts = parseInt ($('#lipo_series_value').text (), 10) * 3.7,
 		value_lipo_mah = parseInt ($('#lipo_mah_value').text (), 10),
 		value_motor_amps = parseInt ($('#motor_amps_value').text (), 10),
-		value_misc_amps = parseInt ($('#misc_amps_value').text (), 10),
+		value_misc_amps = parseFloat ($('#misc_amps_value').text ()),
 		value_fly_load = parseInt ($('#fly_load_value').text (), 10) / 100;
 
 	var
@@ -183,8 +167,8 @@ function flightTimeCalculate () {
 		calc_flying_time_seconds = (((value_lipo_mah / 1000) / calc_total_amps_by_load) * 60 * 60).toFixed (0),
 		calc_charge_rate = value_lipo_mah / 1000;
 
-	$('#max_draw').text (calc_total_amps.toFixed (0) + 'A / ' + calc_total_watts.toFixed (0) + 'W');
-	$('#draw_by_load').text (calc_total_amps_by_load.toFixed (1) + 'A / ' + calc_total_watts_by_load.toFixed (1) + 'W');
+	$('#max_draw').text (calc_total_amps.toFixed (1) + 'A / ' + calc_total_watts.toFixed (0) + 'W');
+	$('#draw_by_load').text (calc_total_amps_by_load.toFixed (1) + 'A / ' + calc_total_watts_by_load.toFixed (0) + 'W');
 	$('#flying_time').text (fuzzySeconds (calc_flying_time_seconds));
 	$('#flying_time_80').text (fuzzySeconds ((calc_flying_time_seconds * 0.8).toFixed (0)));
 	$('#lipo_discharge_rating').text (calc_lipo_discharge_rating.toFixed (0) + 'C');
@@ -205,6 +189,7 @@ function updateShareURL () {
 		parseInt ($('#misc_amps_value').text (), 10) + ',' +
 		paramDefault (urlParams, 'miscAmpsMin', /^\d+$/, 0) + ',' +
 		paramDefault (urlParams, 'miscAmpsMax', /^\d+$/, 50) + ',' +
+		paramDefault (urlParams, 'miscAmpsStep', /^\d+(\.\d+)?$/, 1) + ',' +
 		parseInt ($('#lipo_series_value').text (), 10) + ',' +
 		paramDefault (urlParams, 'lipoSeriesMin', /^\d+$/, 1) + ',' +
 		paramDefault (urlParams, 'lipoSeriesMax', /^\d+$/, 10) + ',' +
