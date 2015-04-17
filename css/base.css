@@ -56,13 +56,29 @@ body, html {
 	margin: 0 0 20px 0;
 }
 #notice {
-	text-align: left;
+	position: relative;
+	text-align: center;
 }
 #notice img {
-	margin: -6px 0 0 0;
+	margin: 2px 0 0 0;
+	vertical-align: top;
+/*
 	display: inline;
 	float: right;
+*/
 }
+
+.absLeft {
+	position: absolute;
+	display: inline-block;
+	left: 0;
+}
+.absRight {
+	position: absolute;
+	display: inline-block;
+	right: 0;
+}
+
 .input {
 	margin: 0 0 9px 0;
 }

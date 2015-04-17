@@ -4,10 +4,18 @@
 		<script type="text/javascript" src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/base.js"></script>
 		<script type="text/javascript" src="js/flighttime.js"></script>
+		<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3" id="facebook-jssdk"></script>
 		<link type="text/css" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
 		<link type="text/css" href="css/base.css" rel="stylesheet" />
+		<meta property="og:url" content="http://tools.jwalter.sh/multicopter/lipo/flighttime.html" />
+		<meta property="og:title" content="LiPo Flight Time Calculator" />
+		<meta property="og:description" content="Calculates approximate flight times for LiPo-powered multicopters. Provides information on draw rates and required discharge capacity of batteries." />
+		<meta property="og:site_name" content="Jeff's Tools" />
+		<!-- <meta property="og:image" content="" /> -->
+		<meta property="fb:app_id" content="1553581401570002" />
 	</head>
 	<body>
+		<div id="fb-root"></div>
 		<div id="wrapper">
 			<div id="inputs">
 				<div class="input">
@@ -87,7 +95,9 @@
 				</tbody>
 			</table>
 			<div id="notice">
-				<a target="_BLANK" href="http://multicopter.forestblue.nl/lipo_need_calculator.html">Jelle Rinkel's LiPo Calculator</a> reworked and used by permission. <a target="_BLANK" href="http://www.github.com/jeffwalter/multicopter-lipo"><img src="images/github.png" alt="Github" /></a>
+				<div class="absLeft"><a target="_BLANK" href="http://multicopter.forestblue.nl/lipo_need_calculator.html">Jelle Rinkel's LiPo Calculator</a> reworked and used by permission.</div>
+<!--				<span class="absRight"><a id="share" target="_BLANK" href="#"><img src="images/share.png" alt="Share" /></a> <a target="_BLANK" href="http://www.github.com/jeffwalter/multicopter-lipo"><img src="images/github.png" alt="Github" /></a></span> -->
+				<div class="absRight"><div class="fb-share-button" data-href="#" data-layout="button"></div> <a target="_BLANK" href="http://www.github.com/jeffwalter/multicopter-lipo"><img src="images/github.png" alt="Github" /></a></div>
 			</div>
 		</div>
 	</body>
